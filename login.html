@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- 屏幕自适应 -->
+	<title></title>
+	<!-- <link rel="stylesheet" type="text/css" href="one-debug.css"> -->
+	<link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<link rel="stylesheet" href="font-awesome\css\font-awesome.min.css">
+    <script type="text/javascript" src="jquery-1.12.2.js"></script>
+    <script type="text/javascript" src="bootstrap\js\bootstrap.js"></script>
+    <script type="text/javascript" src="page.js"></script>
+</head>
+<body>
+<!-- 登录界面 -->
+<div class="loginPage">
+<div class="title">
+     心理家
+     <!-- <img src="title.jpg"> -->
+</div>
+<div class="typeDt">医生版</div>
+
+<!-- login模块 -->
+<div class="login">
+	<!-- <p>登录</p> -->
+	<i class="fa fa-envelope"></i>
+	<input type="text" class="email-pn" value="您的邮箱" onclick="this.value=''"><br>
+	<i class="fa fa-pencil"></i>
+	<input type="text" class="password" value="您的密码" onclick="this.value=''"><br>
+	<a href="firstpage.html">
+	<div class="loginBtn">
+		登录
+	</div>
+	</a>
+	<span id="register">
+		注册
+	</span>
+	<span id="phoneLogin">
+		快速登录
+	</span>
+</div>
+</div>
+
+<!-- 注册页面 -->
+<div class="registerPage">
+	<div class="rowReg">注册</div>
+	<div class="rowReturn">
+		<i class="fa fa-angle-left"></i>
+	</div>
+	<div class="regInput">
+	<!-- 用户名 -->
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>请输入用户名</span>
+		<p>(4-16位英文字母，数字)</p>
+		<input type="text">
+	</div>
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>密码</span>
+		<p>(6-20位英文字母，数字)</p>
+		<input type="text">
+	</div>
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>确认密码</span>
+		<input type="text">
+	</div>
+	<div class="phoneNum">
+		<span class="star">*</span>
+		<span>联系方式</span><br>
+		<input type="text">
+		<input type="button" id="getVerCode" value="获取验证码" onclick="verTime(this)">
+	</div>
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>验证码</span><br>
+		<input type="text">
+	</div>
+	<div id="provision">《心理家在线服务条款》</div>
+	<div id="regBtn">同意服务条款，注册</div>
+	</div>
+</div>
+
+<!-- 医生信息页面 -->
+<div class="doctorMessage">
+	<div class="rowReg">填写医生信息</div>
+	<div class="rowReturn">
+		<i class="fa fa-angle-left"></i>
+	</div>
+	<div class="regInput">
+	<!-- 用户名 -->
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>您的真实姓名</span>
+		<input type="text">
+	</div>
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>您所在医院的全称</span>
+		<input type="text">
+	</div>
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>您所在科室的名称</span>
+		<input type="text">
+	</div>
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>您的职称</span><br>
+		<input type="text">
+	</div>
+	<div id="mesSubmit">提交</div>
+	<p>温馨提示：请耐心等待认证通过</p>
+	</div>
+</div>
+
+<!-- 快速登录 -->
+<div class="qLogin">
+    <div class="rowReg">快速登录</div>
+	<div class="rowReturn">
+		<i class="fa fa-angle-left"></i>
+	</div>
+	<div class="qLogin-input">
+	<div class="qLogin-phoneNum">
+		<span class="star">*</span>
+		<span>联系方式</span><br>
+		<input type="text">
+		<input type="button" id="getVerCode" value="获取验证码" onclick="verTime(this)">
+	</div>
+	<div class="inputM">
+		<span class="star">*</span>
+		<span>验证码</span><br>
+		<input type="text">
+	</div>
+	<div id="logBtn">登录</div>
+    </div>
+</div>
+</body>
+</html>
