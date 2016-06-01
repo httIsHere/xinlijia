@@ -1,42 +1,9 @@
-//注册
-$(sRegister);
-function sRegister(){
-	    $('.registerPage').hide();
-	    $('.doctorMessage').hide();
-	    $('.qLogin').hide();
-	    // $('.loginPage').hide();
-	    // $('body').css('background-color','#fff');
-	$('#register').click(function() {
-		$('.loginPage').hide();
-		$('.registerPage').show();
-		$('body').css('background-color','#fff');
-	});
-	$('.rowReturn').click(function() {
-		$('.loginPage').show();
-		$('.registerPage').hide();
-		$('.doctorMessage').hide();
-		$('.qLogin').hide();
-		$('body').css('background-color','#1E90FF');
-	});
-	$('#regBtn').click(function() {
-		$('.doctorMessage').show();
-		$('.registerPage').hide();
-	});
-	$('#phoneLogin').click(function() {
-		$('.qLogin').show();
-		$('.loginPage').hide();
-		$('body').css('background-color','#fff');
-	});
-	$('#logBtn').click(function() {
-		window.location.href="firstpage.html";
-	});
-}
 //获取验证码60秒倒计时
 var countdown=60;
 function verTime(obj){
         if(countdown==0){
         	obj.removeAttribute("disabled");
-        	obj.value="重新发送";
+        	obj.value="获取验证码";
         	$(obj).css({
 			'background-color': '#1E90FF'
 		});
@@ -55,8 +22,63 @@ function verTime(obj){
         verTime(obj) }
         ,1000) 
 }
+//注册
+$(sRegister);
+function sRegister(){
+	    $('.registerPage').hide();
+	    $('.doctorMessage').hide();
+	    $('.qLogin').hide();
+	    // $('.loginPage').hide();
+	    // $('body').css('background-color','#fff');
+	$('#register').click(function() {
+		$('.loginPage').hide();
+		$('.registerPage').show();
+		$('body').css('background-color','#fff');
+	});
+	$('.rowReturn').click(function() {
+		countdown=0;
+		$('.loginPage').show();
+		$('.registerPage').hide();
+		$('.doctorMessage').hide();
+		$('.qLogin').hide();
+		$('body').css('background-color','#1E90FF');
+	});
+	$('#regBtn').click(function() {
+		// countdown=0;
+		$('.doctorMessage').show();
+		$('.registerPage').hide();
+	});
+	$('#phoneLogin').click(function() {
+		// countdown=0;
+		$('.qLogin').show();
+		$('.loginPage').hide();
+		$('body').css('background-color','#fff');
+	});
+	$('#logBtn').click(function() {
+		window.location.href="firstpage.html";
+	});
+	$('#mesSubmit').click(function() {
+		window.location.href="login.html";
+	});
+}
+// 页面间的数据交换？
+var doctorStatus=1;
+window.onload=function(){
+	if(doctorStatus==1){
+		$('.status').text('继续接单');
+	    $('.status').css('background-color','#00CD00');
+		$('.setDiv').hide();
+		$('.clDiv').hide();
+	}
+	else{
+		$('.status').text('不再接单');
+		$('.status').css('background-color','red');
+        $('.setDiv').hide();
+        $('.clDiv').hide();
+	}
 
-// page-change--页面切换
+}
+// 首页的page-change--页面切换
 $(change);
 function change(){
 	// 默认状态
@@ -67,7 +89,7 @@ function change(){
 	$('.thirdPage').hide();
 	$('.forthPage').hide();
 
-	$('.page1').click(function() {
+	$('.page1').click(function() {//首页出现，其他页面隐藏
 		$('.firstPage').show();
 	    $('.page1').css('color','#1E90FF');
 	    $('.secondPage').hide();
@@ -78,7 +100,7 @@ function change(){
 	    $('.forthPage').hide();
 	    $('.page4').css('color','#000');
 	});
-	$('.page2').click(function() {
+	$('.page2').click(function() {//指定出现，其他页面隐藏
 		$('.firstPage').hide();
 	    $('.page1').css('color','#000');
 	    $('.secondPage').show();
@@ -89,7 +111,7 @@ function change(){
 	    $('.forthPage').hide();
 	    $('.page4').css('color','#000');
 	});
-	$('.page3').click(function() {
+	$('.page3').click(function() {//指定出现，其他页面隐藏
 		$('.firstPage').hide();
 	    $('.page1').css('color','#000');
 	    $('.secondPage').hide();
@@ -100,7 +122,7 @@ function change(){
 	    $('.forthPage').hide();
 	    $('.page4').css('color','#000');
 	});
-	$('.page4').click(function() {
+	$('.page4').click(function() {//指定出现，其他页面隐藏
 		$('.firstPage').hide();
 	    $('.page1').css('color','#000');
 	    $('.secondPage').hide();
@@ -126,12 +148,14 @@ function set(){
 			$('.status').css('background-color','#00CD00');
 			$('.setDiv').hide();
 			$('.clDiv').hide();
+			doctorStatus=1;
 		});
 		$('#stop').click(function() {
 			$('.status').text('不再接单');
 			$('.status').css('background-color','red');
             $('.setDiv').hide();
             $('.clDiv').hide();
+            doctorStatus=0;
 		});
 	});
 	$('.clDiv').click(function() {
@@ -170,8 +194,12 @@ function typeChange(){
 
 
 // chatPage
+window.onload=function(){
+	// 警告初始化不出现
+	$('#warning').hide();
 	$(btnchange);
 	$(Enter);
+}
 
 function btnchange(){
 	$('#inputText').keyup(function() {
@@ -183,9 +211,12 @@ function Enter(){
 	$('#btn').click(function() {
 		if($('#inputText').val()==''){
 		   // $('#warning').show();
-		   $('#warning').slideDown(100);
+		   $('#warning').slideDown(50);
 		   //警告2秒后消失
-           $('#warning').delay(1000).hide();
+           // $('#warning').delay(1000).hide();
+           setTimeout(function(){
+           $('#warning').slideUp(50);	
+       },1000);
 		}
 		else{
 			$('.chatContent').append('<li><img src="'+pic+'"><span>'+$('#inputText').val()+'</span></li>');
